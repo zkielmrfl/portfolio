@@ -1,0 +1,63 @@
+@keyframes scan {
+  from { transform: translateY(-100%); opacity: 0; }
+  20% { opacity: 1; }
+  to { transform: translateY(420%); opacity: 0; }
+}
+
+@keyframes bars {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes run {
+  from { transform: translateX(260px); }
+  to { transform: translateX(-40px); }
+}
+
+@keyframes hop {
+  0%, 100% { transform: translateY(0); }
+  45% { transform: translateY(-34px); }
+}
+
+@keyframes catJump {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  35% { transform: translateY(-58px) rotate(-3deg); }
+  65% { transform: translateY(-38px) rotate(2deg); }
+}
+
+@keyframes tailSway {
+  0%, 100% { transform: rotate(16deg); }
+  50% { transform: rotate(-16deg); }
+}
+
+@keyframes drift {
+  from { transform: translateX(18px); }
+  to { transform: translateX(-240px); }
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes panelRise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseRing {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 34%, transparent); }
+  70% { box-shadow: 0 0 0 14px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
