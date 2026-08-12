@@ -6,17 +6,16 @@ import { MusicEasterEgg } from "@/components/about/MusicEasterEgg/MusicEasterEgg
 export function About() {
   return (
     <section id="about" className="section about-section">
-      <SectionHeader kicker="02 // PERSONNEL FILE" title="About Me" copy="A concise profile module with a small personal archive hidden below." />
+      <SectionHeader kicker="" title="About Me" />
       <div className="about-grid">
-        <div className="about-copy panel">
-          <p>{personal.about}</p>
-          <p>
-            I am currently sharpening my engineering fundamentals, practicing with real application architecture, and learning how to build software that is both useful and maintainable.
-          </p>
+        <div className="about-stack">
+          <div className="about-copy panel">
+            <p>{personal.about}</p>
+          </div>
+          <MusicEasterEgg />
         </div>
         <ProfilePanel />
       </div>
-      <MusicEasterEgg />
     </section>
   );
 }

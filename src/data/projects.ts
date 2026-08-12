@@ -60,5 +60,45 @@ export const projects: Project[] = [
       outcome: "Add real event results or remove this line later.",
       learned: "Capture what the event changed about how you build."
     }
+  },
+  {
+    slug: "ai-study-assistant",
+    name: "AI Study Assistant",
+    icon: "AI",
+    role: "Prototype Developer",
+    category: "PERSONAL",
+    status: "IN DEVELOPMENT",
+    description: "Sample placeholder for an AI-assisted study workflow project.",
+    tech: ["React", "TypeScript", "AI"],
+    links: {},
+    caseStudy: {
+      problem: "Students need a faster way to organize notes, questions, and review prompts.",
+      solution: "Prototype an assistant-style interface for study planning and concept review.",
+      role: "Define the user flow, interface modules, and placeholder AI interaction design.",
+      process: ["Map study workflow", "Design chat and note modules", "Prototype review states"],
+      challenges: ["Keeping AI suggestions understandable", "Avoiding unnecessary complexity"],
+      outcome: "A sample project slot you can replace with a real AI or learning tool later.",
+      learned: "Good AI interfaces still need strong UX structure and clear user control."
+    }
+  },
+  {
+    slug: "inventory-dashboard",
+    name: "Inventory Dashboard",
+    icon: "ID",
+    role: "Full-Stack Developer",
+    category: "ACADEMIC",
+    status: "DEPLOYED",
+    description: "Sample placeholder for a CRUD dashboard or database-backed class project.",
+    tech: ["PHP", "MySQL", "CSS", "Git"],
+    links: {},
+    caseStudy: {
+      problem: "Teams need a clearer way to track items, statuses, and updates.",
+      solution: "Build a dashboard-style interface for creating, updating, and reviewing records.",
+      role: "Plan the data model, build the core screens, and test common update flows.",
+      process: ["Sketch database tables", "Create CRUD screens", "Validate form states"],
+      challenges: ["Designing simple data relationships", "Keeping forms readable on mobile"],
+      outcome: "A sample dashboard project slot for testing carousel scaling and animation.",
+      learned: "Data-heavy tools work best when actions, filters, and status labels are predictable."
+    }
   }
 ];

@@ -1,15 +1,23 @@
-import { ArrowRight, Code2, Link2, Mail } from "lucide-react";
+import Image, { type StaticImageData } from "next/image";
+import { ArrowRight } from "lucide-react";
 import { personal } from "@/data/personal";
 import { socialLinks } from "@/data/socialLinks";
 import { MechanicalLines } from "@/components/effects/MechanicalLines";
 import { StatusIndicator } from "@/components/ui/StatusIndicator";
+import emailLogo from "../../../img/Email.png";
+import githubLogo from "../../../img/GutHub.png";
+import linkedInLogo from "../../../img/LinkedIn.png";
+
+const socialLogos: Record<string, StaticImageData> = {
+  GitHub: githubLogo,
+  LinkedIn: linkedInLogo,
+  Email: emailLogo
+};
 
 export function Hero() {
-  const iconMap = { GitHub: Code2, LinkedIn: Link2, Email: Mail };
   return (
     <section id="home" className="hero section">
       <div className="hero-copy">
-        <p className="eyebrow">ROLE // ASPIRING SOFTWARE ENGINEER</p>
         <h1>{personal.name}</h1>
         <h2>{personal.role}</h2>
         <p>{personal.intro}</p>
@@ -21,10 +29,10 @@ export function Hero() {
         </div>
         <div className="quick-links" aria-label="Quick links">
           {socialLinks.map((link) => {
-            const Icon = iconMap[link.label as keyof typeof iconMap];
+            const logo = socialLogos[link.label];
             return (
-              <a key={link.label} href={link.href} aria-label={link.label}>
-                {Icon ? <Icon size={18} /> : link.label}
+              <a key={link.label} href={link.href} aria-label={link.label} target={link.external ? "_blank" : undefined} rel={link.external ? "noreferrer" : undefined}>
+                {logo ? <Image src={logo} alt="" width={26} height={26} /> : link.label}
               </a>
             );
           })}
