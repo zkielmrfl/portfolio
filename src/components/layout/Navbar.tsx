@@ -18,18 +18,23 @@ export function Navbar() {
       .map((id) => document.getElementById(id))
       .filter((section): section is HTMLElement => Boolean(section));
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) setActiveSection(visible.target.id);
-      },
-      { rootMargin: "-28% 0px -54% 0px", threshold: [0.18, 0.32, 0.48] }
-    );
+    function updateActiveSection() {
+      const probeY = window.scrollY + window.innerHeight * 0.38;
+      const active = sections.reduce((current, section) => {
+        return section.offsetTop <= probeY ? section : current;
+      }, sections[0]);
 
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+      if (active?.id) setActiveSection(active.id);
+    }
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
   }, []);
 
   return (

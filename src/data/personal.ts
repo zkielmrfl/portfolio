@@ -2,7 +2,7 @@ export const personal = {
   name: "Ezekiel O. Marfil",
   role: "Aspiring Software Engineer",
   intro: "I build software, explore emerging technologies, and turn ideas into practical digital experiences.",
-  location: "Add your location",
+  location: "Philippines, Makati City",
   focus: "Software Development",
   interests: ["Web", "AI", "Development", "Systems"],
   currentlyLearning: "Next.js, TypeScript, and stronger engineering habits",

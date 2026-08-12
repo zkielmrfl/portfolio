@@ -3,4 +3,6 @@ export interface PlaylistTrack {
   artist: string;
   link?: string;
   embedUrl?: string;
+  image?: string;
+  imageAlt?: string;
 }

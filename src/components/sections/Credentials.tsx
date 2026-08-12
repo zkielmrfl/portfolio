@@ -16,7 +16,7 @@ export function Credentials() {
     <section id="credentials" className="section credentials-section">
       <SectionHeader kicker="05 // CREDENTIAL LOG" title="Credentials" copy="Education, certifications, organizations, events, and achievements in one expandable log." />
       <CredentialFilter filters={filters} active={filter} onChange={setFilter} />
-      <CredentialTimeline credentials={visible} />
+      <CredentialTimeline credentials={visible} grouped={filter === "All"} />
     </section>
   );
 }

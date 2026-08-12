@@ -5,6 +5,8 @@ export interface Project {
   slug: string;
   name: string;
   icon: string;
+  image?: string;
+  imageAlt?: string;
   role: string;
   category: ProjectCategory;
   status: ProjectStatus;

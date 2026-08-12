@@ -7,7 +7,9 @@ export function ProjectFlashcard({ project, index, onOpen }: { project: Project;
   return (
     <button className="project-card" style={{ "--card-order": index ?? 0 } as CSSProperties} type="button" onClick={onOpen}>
       <span className="corner top-left" />
-      <span className="project-logo">{project.icon}</span>
+      <span className="project-logo">
+        {project.image ? <img src={project.image} alt={project.imageAlt ?? `${project.name} preview`} /> : project.icon}
+      </span>
       <strong>{project.name}</strong>
       <span>ROLE // {project.role}</span>
       <ProjectCategory category={project.category} />

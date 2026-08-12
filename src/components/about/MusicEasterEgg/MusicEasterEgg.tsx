@@ -52,7 +52,7 @@ export function MusicEasterEgg() {
     <div className="music-easter-egg">
       <div className="music-player panel">
         <div className="album-cover" aria-label={`Cover placeholder for ${activeTrack.title}`}>
-          <span>{activeTrack.title.slice(0, 2).toUpperCase()}</span>
+          {activeTrack.image ? <img src={activeTrack.image} alt={activeTrack.imageAlt ?? `${activeTrack.title} cover`} /> : <span>{activeTrack.title.slice(0, 2).toUpperCase()}</span>}
         </div>
         <div className="song-info">
           <p className="eyebrow">PERSONAL FREQUENCY // {String(trackIndex + 1).padStart(2, "0")}</p>
