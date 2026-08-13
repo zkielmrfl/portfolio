@@ -50,10 +50,10 @@ export const projects: Project[] = [
     image: "/images/projects/lost-and-found-system/cover.png",
     role: "Administrator Systems Developer",
     category: "ACADEMIC",
-    status: "ARCHIVED",
+    status: "DEPLOYED",
     description: "FEUreka is a web-based Lost and Found Management System developed for the FEU Institute of Technology community.",
     tech: ["Php", "HTML", "CSS", "Javascript"],
-    links: {},
+    links: {live: "https://feureka.page.gd/"},
     caseStudy: {
       problem: "Lost-and-found processes within educational institutions are often handled manually through verbal inquiries, paper logs, or informal social media posts.",
       solution: "FEUreka provides a comprehensive set of features that support the reporting, management, and retrieval of lost and found items within the FEU Institute of Technology.",
