@@ -28,6 +28,22 @@ export const credentials: Credential[] = [
     imageAlt: "CCNA certificate logo"
   },
   {
+    id: "certification-placeholder-3",
+    type: "Certifications",
+    certificateName: "LinkedIn Learning Certificate of Completion: Practical GitHub Project Management and Collaboration",
+    dateIssued: "May 26, 2026",
+    image: "/images/credentials/certificates/Practical GitHub Project Management.png",
+    imageAlt: "CCNA certificate logo"
+  },
+  {
+    id: "certification-placeholder-4",
+    type: "Certifications",
+    certificateName: "LinkedIn Learning Certificate of Completion: Claude Code 4: Agentic Coding for Professional Developers",
+    dateIssued: "May 26, 2026",
+    image: "/images/credentials/certificates/Claude Code 4.png",
+    imageAlt: "CCNA certificate logo"
+  },
+  {
     id: "organization-placeholder",
     type: "Organizations",
     organizationName: "Association for Computing Machinery",
