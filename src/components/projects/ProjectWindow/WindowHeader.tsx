@@ -9,7 +9,7 @@ export function WindowHeader({ project }: { project: Project }) {
         {project.image ? <img src={project.image} alt={project.imageAlt ?? `${project.name} preview`} /> : project.icon}
       </span>
       <div>
-        <p className="eyebrow">PROJECT FILE // {project.slug}</p>
+        <p className="eyebrow">PROJECT FILE: {project.slug}</p>
         <h3>{project.name}</h3>
         <div className="meta-row">
           <ProjectCategory category={project.category} />

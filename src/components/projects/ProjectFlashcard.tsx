@@ -11,7 +11,7 @@ export function ProjectFlashcard({ project, index, onOpen }: { project: Project;
         {project.image ? <img src={project.image} alt={project.imageAlt ?? `${project.name} preview`} /> : project.icon}
       </span>
       <strong>{project.name}</strong>
-      <span>ROLE // {project.role}</span>
+      <span>ROLE: {project.role}</span>
       <ProjectCategory category={project.category} />
       <span className="open-file">OPEN PROJECT FILE <ArrowUpRight size={14} /></span>
     </button>

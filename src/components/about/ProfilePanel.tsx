@@ -1,9 +1,12 @@
 import { personal } from "@/data/personal";
+import { ProfilePhoto } from "./ProfilePhoto";
 
 export function ProfilePanel() {
   return (
     <aside className="profile-panel panel">
-      <div className="portrait-placeholder" aria-label="Portrait placeholder">PROFILE</div>
+      <div className="portrait-frame">
+        <ProfilePhoto />
+      </div>
       <dl>
         <div><dt>LOCATION</dt><dd>{personal.location}</dd></div>
         <div><dt>ROLE</dt><dd>{personal.role}</dd></div>

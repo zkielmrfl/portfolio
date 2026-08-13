@@ -4,6 +4,7 @@ import { personal } from "@/data/personal";
 import { socialLinks } from "@/data/socialLinks";
 import { MechanicalLines } from "@/components/effects/MechanicalLines";
 import { StatusIndicator } from "@/components/ui/StatusIndicator";
+import { ProfilePhoto } from "@/components/about/ProfilePhoto";
 import emailLogo from "../../../img/Email.png";
 import githubLogo from "../../../img/GutHub.png";
 import linkedInLogo from "../../../img/LinkedIn.png";
@@ -40,11 +41,9 @@ export function Hero() {
       </div>
       <div className="hero-visual" aria-label="Interactive system architecture visualization">
         <MechanicalLines />
-        <div className="core-node">CORE</div>
-        <span className="node n1">UI</span>
-        <span className="node n2">API</span>
-        <span className="node n3">DATA</span>
-        <span className="node n4">LAB</span>
+        <div className="hero-portrait-frame">
+          <ProfilePhoto variant="hero" />
+        </div>
         <div className="status-stack">
           <StatusIndicator label="STATUS" value="OPEN TO OPPORTUNITIES" />
           <StatusIndicator label="SYSTEM" value="ONLINE" />

@@ -53,14 +53,5 @@ export const credentials: Credential[] = [
     involvement: "Participant",
     image: "/images/credentials/events/tech-sprint.png",
     imageAlt: "ACM Developers Week event logo"
-  },
-  {
-    id: "achievement-placeholder",
-    type: "Achievements",
-    achievementName: "Achievement Placeholder",
-    dateIssued: "Add issue date",
-    award: "Add award",
-    image: "/images/credentials/achievements/achievement-logo.png",
-    imageAlt: "Achievement logo"
   }
 ];

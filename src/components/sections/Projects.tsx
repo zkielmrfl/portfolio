@@ -18,7 +18,7 @@ export function Projects() {
 
   return (
     <section id="projects" className="section projects-section">
-      <SectionHeader kicker="03 // PROJECT MODULES" title="Projects" copy="Flashcards keep the system clean. Open a module to inspect the full engineering file." />
+      <SectionHeader kicker="03: PROJECT MODULES" title="Projects" copy="Flashcards keep the system clean. Open a module to inspect the full engineering file." />
       <ProjectFilter categories={categories} active={filter} onChange={setFilter} />
       <ProjectGrid projects={filtered} onOpen={openProject} />
       {activeProject ? <ProjectWindow project={activeProject} onClose={closeProject} /> : null}

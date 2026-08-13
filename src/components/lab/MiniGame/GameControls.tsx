@@ -4,7 +4,7 @@ export function GameControls({ running, onToggle, onRestart, onJump }: { running
       <button type="button" onClick={onToggle}>{running ? "Pause" : "Start"}</button>
       <button type="button" onClick={onRestart}>Restart</button>
       <button type="button" onClick={onJump} disabled={!running}>Jump</button>
-      <span>CLICK / TAP // JUMP</span>
+      <span>CLICK / TAP: JUMP</span>
     </div>
   );
 }

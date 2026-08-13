@@ -5,7 +5,7 @@ import { commands } from "./commands";
 import { TerminalInput } from "./TerminalInput";
 
 export function Terminal() {
-  const [lines, setLines] = useState(["PORTFOLIO TERMINAL // type help"]);
+  const [lines, setLines] = useState(["PORTFOLIO TERMINAL: type help"]);
   function run(command: string) {
     if (command === "clear") {
       setLines([]);

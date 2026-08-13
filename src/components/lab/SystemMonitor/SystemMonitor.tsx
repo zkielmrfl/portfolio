@@ -16,10 +16,10 @@ export function SystemMonitor() {
   return (
     <article className="panel lab-panel monitor">
       <h3>System Monitor</h3>
-      <p>PORTFOLIO STATUS // ONLINE</p>
-      <p>PROJECTS // {projects.length}</p>
-      <p>TECHNOLOGIES // {techCount}</p>
-      <p>CURRENT TIME // {time}</p>
+      <p>PORTFOLIO STATUS: ONLINE</p>
+      <p>PROJECTS: {projects.length}</p>
+      <p>TECHNOLOGIES: {techCount}</p>
+      <p>CURRENT TIME: {time}</p>
     </article>
   );
 }

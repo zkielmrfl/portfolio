@@ -5,6 +5,7 @@ import { useState } from "react";
 import { playlist } from "@/data/playlist";
 import { useSessionStorage } from "@/hooks/useSessionStorage";
 import { Equalizer } from "./Equalizer";
+import { StatsSpiderChart } from "../StatsSpiderChart";
 
 function getEmbedUrl(track: { link?: string; embedUrl?: string }) {
   if (track.embedUrl) return track.embedUrl;
@@ -50,39 +51,48 @@ export function MusicEasterEgg() {
 
   return (
     <div className="music-easter-egg">
-      <div className="music-player panel">
-        <div className="album-cover" aria-label={`Cover placeholder for ${activeTrack.title}`}>
-          {activeTrack.image ? <img src={activeTrack.image} alt={activeTrack.imageAlt ?? `${activeTrack.title} cover`} /> : <span>{activeTrack.title.slice(0, 2).toUpperCase()}</span>}
-        </div>
-        <div className="song-info">
-          <p className="eyebrow">PERSONAL FREQUENCY // {String(trackIndex + 1).padStart(2, "0")}</p>
-          <h3>{activeTrack.title}</h3>
-          <p>{activeTrack.artist}</p>
-          <div className="player-controls" aria-label="Music controls">
-            <button type="button" aria-label="Previous song" onClick={previousTrack}>
-              <SkipBack size={16} />
-            </button>
-            <button type="button" aria-label={playing ? "Hide embedded player" : "Show embedded player"} onClick={() => setPlaying(!playing)} disabled={!embedUrl}>
-              {playing ? <Pause size={16} /> : <Play size={16} />}
-            </button>
-            <button type="button" aria-label="Next song" onClick={nextTrack}>
-              <SkipForward size={16} />
-            </button>
-            {playing ? <Equalizer /> : null}
-          </div>
-          {playing && embedUrl ? (
-            <div className="embedded-player">
-              <iframe
-                title={`${activeTrack.title} official embedded player`}
-                src={embedUrl}
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-              />
+      <div className="music-stats-row">
+        <div className="music-player panel">
+          <div className="music-player-top">
+            <div className="album-cover" aria-label={`Cover placeholder for ${activeTrack.title}`}>
+              {activeTrack.image ? <img src={activeTrack.image} alt={activeTrack.imageAlt ?? `${activeTrack.title} cover`} /> : <span>{activeTrack.title.slice(0, 2).toUpperCase()}</span>}
             </div>
-          ) : null}
-          {!embedUrl ? <p className="embed-note">No official embed available for this link.</p> : null}
-          {activeTrack.link ? <a className="inline-link" href={activeTrack.link} target="_blank" rel="noreferrer">Open official link</a> : null}
+            <span className="music-cast-icon" aria-hidden>
+              <span />
+            </span>
+          </div>
+          <div className="song-info">
+            <h3>{activeTrack.title}</h3>
+            <p>{activeTrack.artist}</p>
+          </div>
+          <div className="player-footer">
+            <div className="player-controls" aria-label="Music controls">
+              <button type="button" aria-label="Previous song" onClick={previousTrack}>
+                <SkipBack size={16} />
+              </button>
+              <button type="button" aria-label={playing ? "Hide embedded player" : "Show embedded player"} onClick={() => setPlaying(!playing)} disabled={!embedUrl}>
+                {playing ? <Pause size={16} /> : <Play size={16} />}
+              </button>
+              <button type="button" aria-label="Next song" onClick={nextTrack}>
+                <SkipForward size={16} />
+              </button>
+              {playing ? <Equalizer /> : null}
+            </div>
+            {!embedUrl ? <p className="embed-note">No official embed available for this link.</p> : null}
+            {activeTrack.link ? <a className="inline-link" href={activeTrack.link} target="_blank" rel="noreferrer">Open official link</a> : null}
+          </div>
         </div>
+        {playing && embedUrl ? (
+          <div className="embedded-player music-embed-panel">
+            <iframe
+              title={`${activeTrack.title} official embedded player`}
+              src={embedUrl}
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+            />
+          </div>
+        ) : null}
+        <StatsSpiderChart />
       </div>
       <button className="frequency-trigger" type="button" onClick={() => setOpen(!open)} aria-expanded={open}>
         <Music size={16} aria-hidden />

@@ -8,6 +8,9 @@ export const personal = {
   currentlyLearning: "Next.js, TypeScript, and stronger engineering habits",
   about:
     "I am a university student and aspiring software engineer interested in building practical digital systems. I enjoy turning ideas into usable products, learning how software is designed, and improving the way people interact with technology.",
+  heroPhoto: "/images/profile/hero-photo.png",
+  heroPhotoVersion: "2026-08-13-hero-2",
+  profilePhoto: "/images/profile/profile-photo.png",
   resumeUrl: "/resume/resume.pdf",
   email: "ekel.marfil@gmail.com"
 };

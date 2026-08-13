@@ -5,6 +5,7 @@ import { Bot, MessageCircle, Send, X } from "lucide-react";
 import { projects } from "@/data/projects";
 import { skills } from "@/data/skills";
 import { personal } from "@/data/personal";
+import { credentials } from "@/data/credentials";
 
 type Message = {
   role: "bot" | "user";
@@ -13,12 +14,39 @@ type Message = {
 
 function getBotReply(input: string) {
   const message = input.toLowerCase();
+  const education = credentials.find((item) => item.type === "Education");
+  const certifications = credentials.filter((item) => item.type === "Certifications").map((item) => item.certificateName).filter(Boolean);
+  const organizations = credentials.filter((item) => item.type === "Organizations").map((item) => item.organizationName).filter(Boolean);
+
+  if (message.includes("who") || message.includes("person") || message.includes("name") || message.includes("about")) {
+    return `${personal.name} is an ${personal.role.toLowerCase()} based in ${personal.location}. ${personal.about}`;
+  }
+  if (message.includes("graduate") || message.includes("graduated") || message.includes("school") || message.includes("university") || message.includes("college") || message.includes("education")) {
+    if (education?.university && education.program) {
+      return `${personal.name} studies at ${education.university}, taking ${education.program} ${education.spanYear ?? ""}.`;
+    }
+    return "The education section has not been fully filled in yet.";
+  }
   if (message.includes("project")) {
-    return `There are ${projects.length} project modules. Start with ${projects[0]?.name ?? "the project grid"} in the Projects section.`;
+    const featured = projects.slice(0, 3).map((project) => `${project.name} (${project.status.toLowerCase()})`).join(", ");
+    return `There are ${projects.length} project modules. Featured work includes ${featured}. Open Projects for case studies, tech stacks, and links.`;
   }
   if (message.includes("skill") || message.includes("tech")) {
     const count = skills.reduce((total, group) => total + group.skills.length, 0);
-    return `The current skill database has ${count} modules across ${skills.length} categories.`;
+    const categories = skills.map((group) => `${group.name}: ${group.skills.join(", ")}`).join("; ");
+    return `${personal.name}'s skill database has ${count} modules across ${skills.length} categories. ${categories}.`;
+  }
+  if (message.includes("certificate") || message.includes("certification")) {
+    return certifications.length ? `Listed certifications include ${certifications.join(", ")}.` : "No certifications have been added yet.";
+  }
+  if (message.includes("organization") || message.includes("club") || message.includes("acm")) {
+    return organizations.length ? `${personal.name} is connected with ${organizations.join(", ")}.` : "No organizations have been added yet.";
+  }
+  if (message.includes("learn") || message.includes("currently")) {
+    return `${personal.name} is currently learning ${personal.currentlyLearning}.`;
+  }
+  if (message.includes("location") || message.includes("where") || message.includes("live")) {
+    return `${personal.name} is based in ${personal.location}.`;
   }
   if (message.includes("contact") || message.includes("email")) {
     return `Use the Contact section or email ${personal.email}.`;
@@ -26,14 +54,14 @@ function getBotReply(input: string) {
   if (message.includes("resume")) {
     return "Use the Resume button in the header to view or download the resume file.";
   }
-  return "Try asking about projects, skills, resume, or contact.";
+  return "I can answer from this website's data. Try asking who Ezekiel is, where he studies, what he is learning, his projects, skills, certifications, organizations, resume, or contact info.";
 }
 
 export function ChatBot() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const [messages, setMessages] = useState<Message[]>([
-    { role: "bot", text: "Portfolio assistant online. Ask about projects, skills, resume, or contact." }
+    { role: "bot", text: "Portfolio assistant online. Ask me about Ezekiel, education, projects, skills, credentials, resume, or contact." }
   ]);
 
   function submit(event: FormEvent<HTMLFormElement>) {
@@ -60,7 +88,7 @@ export function ChatBot() {
             ))}
           </div>
           <form className="chatbot-input" onSubmit={submit}>
-            <input value={value} onChange={(event) => setValue(event.target.value)} aria-label="Ask the portfolio chatbot" placeholder="Ask about projects..." />
+            <input value={value} onChange={(event) => setValue(event.target.value)} aria-label="Ask the portfolio chatbot" placeholder="Ask who Ezekiel is..." />
             <button type="submit" aria-label="Send message"><Send size={16} /></button>
           </form>
         </section>
