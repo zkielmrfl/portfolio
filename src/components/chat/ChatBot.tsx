@@ -12,63 +12,92 @@ type Message = {
   text: string;
 };
 
+const starters = [
+  "Tell me about yourself",
+  "What projects did you build?",
+  "What skills do you have?"
+];
+
+function includesAny(message: string, words: string[]) {
+  return words.some((word) => message.includes(word));
+}
+
+function list(items: string[]) {
+  if (items.length <= 1) return items.join("");
+  return `${items.slice(0, -1).join(", ")} and ${items.at(-1)}`;
+}
+
 function getBotReply(input: string) {
   const message = input.toLowerCase();
   const education = credentials.find((item) => item.type === "Education");
   const certifications = credentials.filter((item) => item.type === "Certifications").map((item) => item.certificateName).filter(Boolean);
   const organizations = credentials.filter((item) => item.type === "Organizations").map((item) => item.organizationName).filter(Boolean);
+  const events = credentials.filter((item) => item.type === "Events").map((item) => item.eventName).filter(Boolean);
+  const skillGroups = skills.map((group) => `${group.name}: ${group.skills.join(", ")}`);
+  const featuredProjects = projects.map((project) => `${project.name}, ${project.description}`);
 
-  if (message.includes("who") || message.includes("person") || message.includes("name") || message.includes("about")) {
-    return `${personal.name} is an ${personal.role.toLowerCase()} based in ${personal.location}. ${personal.about}`;
+  if (includesAny(message, ["hello", "hi", "hey", "good morning", "good afternoon", "good evening"])) {
+    return `Hi, I am Ezekiel's portfolio assistant. Ask me anything about his background, projects, skills, credentials, or how to contact him.`;
   }
-  if (message.includes("graduate") || message.includes("graduated") || message.includes("school") || message.includes("university") || message.includes("college") || message.includes("education")) {
+  if (includesAny(message, ["who", "person", "name", "about", "yourself", "your self", "introduce", "tell me about"])) {
+    return `I am ${personal.name}, an ${personal.role.toLowerCase()} based in ${personal.location}. ${personal.about} My current focus is ${personal.focus.toLowerCase()}, and I am especially interested in ${personal.interests.join(", ")}.`;
+  }
+  if (includesAny(message, ["graduate", "graduated", "school", "university", "college", "education", "study", "studying", "course", "program"])) {
     if (education?.university && education.program) {
-      return `${personal.name} studies at ${education.university}, taking ${education.program} ${education.spanYear ?? ""}.`;
+      return `Ezekiel studies at ${education.university}, taking ${education.program} ${education.spanYear ?? ""}.`;
     }
     return "The education section has not been fully filled in yet.";
   }
-  if (message.includes("project")) {
-    const featured = projects.slice(0, 3).map((project) => `${project.name} (${project.status.toLowerCase()})`).join(", ");
-    return `There are ${projects.length} project modules. Featured work includes ${featured}. Open Projects for case studies, tech stacks, and links.`;
+  if (includesAny(message, ["project", "portfolio", "built", "work", "system", "app", "website"])) {
+    return `Ezekiel currently highlights ${projects.length} projects: ${featuredProjects.join(" ")} You can open each project card to see the role, tech stack, challenges, outcome, and project details.`;
   }
-  if (message.includes("skill") || message.includes("tech")) {
+  if (includesAny(message, ["skill", "tech", "technology", "stack", "language", "tools", "programming"])) {
     const count = skills.reduce((total, group) => total + group.skills.length, 0);
-    const categories = skills.map((group) => `${group.name}: ${group.skills.join(", ")}`).join("; ");
-    return `${personal.name}'s skill database has ${count} modules across ${skills.length} categories. ${categories}.`;
+    return `Ezekiel has ${count} listed skills across ${skills.length} areas. ${skillGroups.join(". ")}. He is currently learning ${personal.currentlyLearning}.`;
   }
-  if (message.includes("certificate") || message.includes("certification")) {
-    return certifications.length ? `Listed certifications include ${certifications.join(", ")}.` : "No certifications have been added yet.";
+  if (includesAny(message, ["certificate", "certification", "certified"])) {
+    return certifications.length ? `His listed certifications include ${list(certifications)}.` : "No certifications have been added yet.";
   }
-  if (message.includes("organization") || message.includes("club") || message.includes("acm")) {
-    return organizations.length ? `${personal.name} is connected with ${organizations.join(", ")}.` : "No organizations have been added yet.";
+  if (includesAny(message, ["organization", "club", "acm", "committee"])) {
+    return organizations.length ? `Ezekiel is connected with ${list(organizations)}.` : "No organizations have been added yet.";
   }
-  if (message.includes("learn") || message.includes("currently")) {
-    return `${personal.name} is currently learning ${personal.currentlyLearning}.`;
+  if (includesAny(message, ["event", "hackathon", "workshop", "seminar"])) {
+    return events.length ? `Some events in Ezekiel's log include ${list(events)}.` : "No events have been added yet.";
   }
-  if (message.includes("location") || message.includes("where") || message.includes("live")) {
-    return `${personal.name} is based in ${personal.location}.`;
+  if (includesAny(message, ["learn", "currently", "focus", "goal"])) {
+    return `Right now, Ezekiel is focused on ${personal.focus.toLowerCase()} and currently learning ${personal.currentlyLearning}.`;
   }
-  if (message.includes("contact") || message.includes("email")) {
-    return `Use the Contact section or email ${personal.email}.`;
+  if (includesAny(message, ["location", "where", "live", "based"])) {
+    return `Ezekiel is based in ${personal.location}.`;
   }
-  if (message.includes("resume")) {
+  if (includesAny(message, ["contact", "email", "message", "reach", "hire"])) {
+    return `You can contact Ezekiel through the Contact section or email him directly at ${personal.email}.`;
+  }
+  if (includesAny(message, ["resume", "cv"])) {
     return "Use the Resume button in the header to view or download the resume file.";
   }
-  return "I can answer from this website's data. Try asking who Ezekiel is, where he studies, what he is learning, his projects, skills, certifications, organizations, resume, or contact info.";
+  if (includesAny(message, ["thank", "thanks"])) {
+    return "You're welcome. You can also ask me about Ezekiel's projects, skills, education, certifications, or contact info.";
+  }
+  return "I can answer based on Ezekiel's portfolio data. Try asking: tell me about yourself, what projects did you build, what skills do you have, where do you study, or how can I contact you?";
 }
 
 export function ChatBot() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const [messages, setMessages] = useState<Message[]>([
-    { role: "bot", text: "Portfolio assistant online. Ask me about Ezekiel, education, projects, skills, credentials, resume, or contact." }
+    { role: "bot", text: "Hi, I am Ezekiel's portfolio assistant. I can answer questions about his background, projects, skills, credentials, resume, and contact info." }
   ]);
+
+  function ask(text: string) {
+    setMessages((current) => [...current, { role: "user", text }, { role: "bot", text: getBotReply(text) }]);
+  }
 
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const text = value.trim();
     if (!text) return;
-    setMessages((current) => [...current, { role: "user", text }, { role: "bot", text: getBotReply(text) }]);
+    ask(text);
     setValue("");
   }
 
@@ -77,7 +106,7 @@ export function ChatBot() {
       {open ? (
         <section className="chatbot-window">
           <header>
-            <span><Bot size={16} aria-hidden /> ASSISTANT // ONLINE</span>
+            <span><Bot size={16} aria-hidden /> EZEKIEL AI: ONLINE</span>
             <button className="icon-btn" type="button" aria-label="Close chatbot" onClick={() => setOpen(false)}>
               <X size={16} />
             </button>
@@ -87,8 +116,15 @@ export function ChatBot() {
               <p key={`${message.role}-${index}`} className={message.role}>{message.text}</p>
             ))}
           </div>
+          <div className="chatbot-starters" aria-label="Suggested questions">
+            {starters.map((starter) => (
+              <button key={starter} type="button" onClick={() => ask(starter)}>
+                {starter}
+              </button>
+            ))}
+          </div>
           <form className="chatbot-input" onSubmit={submit}>
-            <input value={value} onChange={(event) => setValue(event.target.value)} aria-label="Ask the portfolio chatbot" placeholder="Ask who Ezekiel is..." />
+            <input value={value} onChange={(event) => setValue(event.target.value)} aria-label="Ask the portfolio chatbot" placeholder="Ask me about Ezekiel..." />
             <button type="submit" aria-label="Send message"><Send size={16} /></button>
           </form>
         </section>
