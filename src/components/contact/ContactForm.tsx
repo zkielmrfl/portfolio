@@ -8,12 +8,17 @@ export function ContactForm() {
     event.preventDefault();
     setStatus("TRANSMITTING");
     const form = new FormData(event.currentTarget);
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(Object.fromEntries(form))
-    });
-    setStatus(response.ok ? "RECEIVED LOCALLY" : "TRANSMISSION FAILED");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(form))
+      });
+      setStatus(response.ok ? "MESSAGE SENT" : "TRANSMISSION FAILED");
+      if (response.ok) event.currentTarget.reset();
+    } catch {
+      setStatus("TRANSMISSION FAILED");
+    }
   }
   return (
     <form className="contact-form panel" onSubmit={submit}>
@@ -21,7 +26,7 @@ export function ContactForm() {
       <label>Email<input name="email" type="email" required /></label>
       <label>Message<textarea name="message" required rows={5} /></label>
       <button className="btn primary" type="submit">Send Message</button>
-      <p className="eyebrow">STATUS // {status}</p>
+      <p className="eyebrow">STATUS: {status}</p>
     </form>
   );
 }
