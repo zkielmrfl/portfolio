@@ -69,6 +69,16 @@
 .brand-mark {
   width: 48px;
   height: 48px;
+  overflow: hidden;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
 }
 
 .nav-links a,

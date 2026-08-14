@@ -1,6 +1,7 @@
 "use client";
 
 import { Menu, FileText } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { navigation } from "@/data/navigation";
 import { personal } from "@/data/personal";
@@ -40,7 +41,9 @@ export function Navbar() {
   return (
     <header className="navbar">
       <a className="brand" href="#home" aria-label="Home">
-        <span className="brand-mark">OS</span>
+        <span className="brand-mark">
+          <Image src="/icons/logo-photo.png" alt="" width={48} height={48} priority />
+        </span>
         <span>PORTFOLIO</span>
       </a>
       <nav className="nav-links" aria-label="Main navigation">
