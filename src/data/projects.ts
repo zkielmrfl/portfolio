@@ -117,7 +117,7 @@ export const projects: Project[] = [
     status: "DEPLOYED",
     description: "A responsive, browser-based social deduction party game where players must uncover a hidden impostor using secret word clues.",
     tech: ["React 18", "Vite", "JavaScript", "CSS"],
-    links: {live: "word-impostor-gamebykiel.vercel.app"},
+    links: {live: "https://word-impostor-gamebykiel.vercel.app/"},
     caseStudy: {
       problem: "Players lack a quick-to-launch, visually stunning digital party game for group settings that avoids cumbersome physical setups and clunky user interfaces",
       solution: "Developed a dynamic, component-driven web application featuring automated game phases, real-time role reveals, voting mechanics, and an Apple-inspired glassmorphism design.",
