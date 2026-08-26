@@ -106,5 +106,26 @@ export const projects: Project[] = [
       outcome: "FEUreka provides a comprehensive set of features that support the reporting, management, and retrieval of lost and found items within the FEU Institute of Technology.",
       learned: "this journey reinforced that successful software development is built on more than just technical proficiency; it requires collaborative accountability, thorough planning, and a resilient approach to troubleshooting that I am eager to apply to my future work in the field."
     }
+  },
+  {
+    slug: "impostor-game",
+    name: "Who are you?",
+    icon: "WY",
+    image: "/images/projects/impostor-game/cover.png",
+    role: "Frontend-Backend",
+    category: "PERSONAL",
+    status: "DEPLOYED",
+    description: "A responsive, browser-based social deduction party game where players must uncover a hidden impostor using secret word clues.",
+    tech: ["React 18", "Vite", "JavaScript", "CSS"],
+    links: {live: "word-impostor-gamebykiel.vercel.app"},
+    caseStudy: {
+      problem: "Players lack a quick-to-launch, visually stunning digital party game for group settings that avoids cumbersome physical setups and clunky user interfaces",
+      solution: "Developed a dynamic, component-driven web application featuring automated game phases, real-time role reveals, voting mechanics, and an Apple-inspired glassmorphism design.",
+      role: "Solo Frontend Developer & UI/UX Designer",
+      process: ["Mapped out core game loops and phase-based views", "Established a scalable folder and component architecture", "Integrated React state management to control dynamic game rules", "Crafted and optimized modern UI components, including custom glassmorphic layout elements."],
+      challenges: ["esolving browser performance bottlenecks and infinite layout loops caused by complex SVG filter-based glass components."],
+      outcome: "A personal project that my friends and I can use to kill time and have fun during get together",
+      learned: "I have used to project to explore in outsourcing codes and information to test. This project open new pathways to me to level things up especially the UI/UX."
+    }
   }
 ];
