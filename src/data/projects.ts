@@ -100,11 +100,11 @@ export const projects: Project[] = [
     caseStudy: {
       problem: "A place where I want to show my appreciation to my friends",
       solution: "I created a publishable website where our pictures that holds precious memories are being held",
-      role: "I created all of the features",
-      process: ["System Architechture", "Database Schemas", "Merging of branches and testing"],
-      challenges: ["Extracting and chunking clean text from diverse, large document formats (like PDFs) without exceeding LLM context and token limits.", "Enforcing strict, validated JSON outputs from the AI so the frontend can reliably render question components witho"],
-      outcome: "FEUreka provides a comprehensive set of features that support the reporting, management, and retrieval of lost and found items within the FEU Institute of Technology.",
-      learned: "this journey reinforced that successful software development is built on more than just technical proficiency; it requires collaborative accountability, thorough planning, and a resilient approach to troubleshooting that I am eager to apply to my future work in the field."
+      role: "Backend and Fronted",
+      process: ["UI designing", "Gathering of photos", "Code implementation"],
+      challenges: ["Whether to add database or not", "Manual adding of images"],
+      outcome: "A website gallery of my friend group called DONUT",
+      learned: "This journey.."
     }
   },
   {
