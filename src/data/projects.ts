@@ -94,7 +94,7 @@ export const projects: Project[] = [
     role: "Frontend-Backend",
     category: "PERSONAL",
     status: "IN DEVELOPMENT",
-    description: "TURBO is an AI-powered study and review platform that instantly converts uploaded documents and notes into customizable, shareable quizzes.",
+    description: "This website is dedicated to my closest friends to commemorate our memories together.",
     tech: ["Php", "HTML", "CSS", "Javascript"],
     links: {github: ""},
     caseStudy: {
