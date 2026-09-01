@@ -21,7 +21,7 @@ function getCredentialRows(credential: Credential) {
     case "Education":
       return [
         { label: "University", value: credential.university },
-        { label: "Program & Span Year", value: `${credential.program} // ${credential.spanYear}` },
+        { label: "Program & Span Year", value: `${credential.program} ${credential.spanYear}` },
         { label: "Award", value: credential.award }
       ];
     case "Certifications":
