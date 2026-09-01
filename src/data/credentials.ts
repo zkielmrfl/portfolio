@@ -7,7 +7,7 @@ export const credentials: Credential[] = [
     university: "Far Eastern University - Institute of Technology",
     program: "Bachelor of Science in Computer Science Specialized in Software Engineering",
     spanYear: "(2024-2028)",
-    //award: "",
+    award: "",
     image: "/images/credentials/education/university-logo.png",
     imageAlt: "University logo"
   },
